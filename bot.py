@@ -475,23 +475,22 @@ class MilanoExpressBot:
         self.pricing = PricingEngine(self.db)
         self.bot = Bot(token=BOT_TOKEN)
     
-    async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        """Comando /start"""
-       welcome = """
-🏠 *Milano Express - Pricing Bot*
+async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    welcome = """
+    🎉 *Milano Express - Pricing Bot*
 
-Bot per suggerimenti prezzi dinamici basati su eventi e mercato.
+    Bot per suggerimenti prezzi dinamici basati su eventi e mercato.
 
-*Comandi disponibili:*
-/oggi - Prezzo suggerito oggi
-/domani - Previsione domani
-/settimana - Trend prossimi 7 giorni
-/eventi - Eventi importanti 2026
-/help - Lista comandi
+    *Comandi disponibili:*
+    /oggi - Prezzo suggerito oggi
+    /domani - Previsione domani
+    /settimana - Trend prossimi 7 giorni
+    /eventi - Eventi importanti 2026
+    /help - Lista comandi
 
-Sviluppato per Milano Express B&B 🇮🇹
-        """
-        await update.message.reply_text(welcome, parse_mode='Markdown')
+    Sviluppato per Milano Express B&B IT
+    """
+    await update.message.reply_text(welcome, parse_mode="Markdown")
     
     async def oggi(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Analisi prezzo oggi"""
@@ -606,28 +605,29 @@ Sviluppato per Milano Express B&B 🇮🇹
         
         await update.message.reply_text(message, parse_mode='Markdown')
     
-    async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
-        """Comando /help"""
-      help_text = """
-🤖 *Comandi disponibili:*
+async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    help_text = """
+    📋 Comandi disponibili:
+    
+    📊 Analisi Prezzi
+    /oggi - Prezzo suggerito oggi
+    /domani - Previsione domani
+    /settimana - Trend 7 giorni
+    
+    📅 Eventi
+    /eventi - Lista eventi importanti 2026
+    
+    ⚙️ Altro
+    /help - Questo messaggio
+    
+    💡 Come funziona:
+    Il bot analizza eventi, stagionalità e giorno della settimana.
+    
+    📌 Prezzi base: €42 settimana, €55 weekend
+    🎯 Range: €35-150
+    """
+    await update.message.reply_text(help_text, parse_mode="Markdown")
 
-📊 *Analisi Prezzi*
-/oggi - Prezzo suggerito oggi
-/domani - Previsione domani
-/settimana - Trend 7 giorni (il più utile!)
-
-📅 *Eventi*
-/eventi - Lista eventi importanti 2026
-
-⚙️ *Altro*
-/help - Questo messaggio
-
-💡 *Come funziona:*
-Il bot analizza eventi (Olimpiadi, Salone Mobile, Fashion Week), stagionalità e giorno della settimana per suggerire il prezzo ottimale ogni giorno.
-
-📈 *Prezzi base:* €42 settimana, €55 weekend
-🎯 *Range:* €35-150
-        """
 
 ### **STEP 4: Commit**
 
