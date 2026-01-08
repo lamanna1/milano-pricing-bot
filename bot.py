@@ -477,19 +477,17 @@ class MilanoExpressBot:
     
     async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Comando /start"""
-        welcome = """
+       welcome = """
 🏠 *Milano Express - Pricing Bot*
 
-Bot per monitoraggio prezzi Airbnb e suggerimenti dinamici.
+Bot per suggerimenti prezzi dinamici basati su eventi e mercato.
 
 *Comandi disponibili:*
-/oggi - Analisi mercato oggi
+/oggi - Prezzo suggerito oggi
 /domani - Previsione domani
 /settimana - Trend prossimi 7 giorni
-/eventi - Eventi impattanti prossimi
-/competitor - Prezzi competitor
-/suggerisci - Prezzo ottimale per date
-/help - Aiuto
+/eventi - Eventi importanti 2026
+/help - Lista comandi
 
 Sviluppato per Milano Express B&B 🇮🇹
         """
@@ -610,25 +608,66 @@ Sviluppato per Milano Express B&B 🇮🇹
     
     async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Comando /help"""
-        help_text = """
+      help_text = """
 🤖 *Comandi disponibili:*
 
 📊 *Analisi Prezzi*
 /oggi - Prezzo suggerito oggi
 /domani - Previsione domani
-/settimana - Trend 7 giorni
-/competitor - Prezzi competitor
+/settimana - Trend 7 giorni (il più utile!)
 
 📅 *Eventi*
-/eventi - Lista eventi importanti
-/olimpiadi - Info Olimpiadi 2026
-/salone - Info Salone Mobile 2026
+/eventi - Lista eventi importanti 2026
 
 ⚙️ *Altro*
 /help - Questo messaggio
 
-💡 *Suggerimento:* Il bot invia automaticamente aggiornamenti quotidiani alle 7:00 e report settimanali il lunedì.
+💡 *Come funziona:*
+Il bot analizza eventi (Olimpiadi, Salone Mobile, Fashion Week), stagionalità e giorno della settimana per suggerire il prezzo ottimale ogni giorno.
+
+📈 *Prezzi base:* €42 settimana, €55 weekend
+🎯 *Range:* €35-150
         """
+```
+
+---
+
+### **STEP 4: Commit**
+
+1. **Scroll in fondo**
+2. **Commit message**: "Remove non-working commands"
+3. **"Commit changes"**
+
+---
+
+## ⏳ ASPETTA RIDEPLOY
+
+Render rileva il cambio e rideploya automaticamente (~2 min)
+
+---
+
+## ✅ POI TESTA
+
+Nel gruppo Telegram:
+```
+/start    → Verifica nuova lista comandi
+/help     → Verifica lista pulita
+/oggi     → Funziona ✅
+/settimana → Funziona ✅
+```
+
+---
+
+## 📋 COMANDI FINALI
+
+Dopo questa modifica, il bot avrà solo:
+```
+✅ /start      - Benvenuto
+✅ /oggi       - Prezzo oggi + analisi
+✅ /domani     - Previsione domani
+✅ /settimana  - Trend 7 giorni
+✅ /eventi     - Eventi 2026
+✅ /help       - Lista comandi
         await update.message.reply_text(help_text, parse_mode='Markdown')
     
     async def send_daily_report(self):
