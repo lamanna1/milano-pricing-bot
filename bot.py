@@ -628,9 +628,6 @@ Il bot analizza eventi (Olimpiadi, Salone Mobile, Fashion Week), stagionalità e
 📈 *Prezzi base:* €42 settimana, €55 weekend
 🎯 *Range:* €35-150
         """
-```
-
----
 
 ### **STEP 4: Commit**
 
