@@ -627,45 +627,6 @@ async def help_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE)
     🎯 Range: €35-150
     """
     await update.message.reply_text(help_text, parse_mode="Markdown")
-
-
-### **STEP 4: Commit**
-
-1. **Scroll in fondo**
-2. **Commit message**: "Remove non-working commands"
-3. **"Commit changes"**
-
----
-
-## ⏳ ASPETTA RIDEPLOY
-
-Render rileva il cambio e rideploya automaticamente (~2 min)
-
----
-
-## ✅ POI TESTA
-
-Nel gruppo Telegram:
-```
-/start    → Verifica nuova lista comandi
-/help     → Verifica lista pulita
-/oggi     → Funziona ✅
-/settimana → Funziona ✅
-```
-
----
-
-## 📋 COMANDI FINALI
-
-Dopo questa modifica, il bot avrà solo:
-```
-✅ /start      - Benvenuto
-✅ /oggi       - Prezzo oggi + analisi
-✅ /domani     - Previsione domani
-✅ /settimana  - Trend 7 giorni
-✅ /eventi     - Eventi 2026
-✅ /help       - Lista comandi
-        await update.message.reply_text(help_text, parse_mode='Markdown')
     
     async def send_daily_report(self):
         """Report giornaliero automatico"""
