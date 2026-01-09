@@ -5,6 +5,20 @@ Calibrato su dati reali mercato Seveso/Milano Nord
 """
 
 import os
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+
+@app.route("/healthz")
+def healthz():
+    return "ok", 200
+
+def run_http():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+
+Thread(target=run_http, daemon=True).start()
 import logging
 import random
 import threading
