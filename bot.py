@@ -5,20 +5,25 @@ Calibrato su dati reali mercato Seveso/Milano Nord
 """
 
 import os
-from flask import Flask
-from threading import Thread
+import threading
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
-app = Flask(__name__)
+class HealthHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path in ("/healthz", "/"):
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"ok")
+        else:
+            self.send_response(404)
+            self.end_headers()
 
-@app.route("/healthz")
-def healthz():
-    return "ok", 200
+def start_health_server():
+    port = int(os.environ.get("PORT", "10000"))
+    server = HTTPServer(("0.0.0.0", port), HealthHandler)
+    server.serve_forever()
 
-def run_http():
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
-
-Thread(target=run_http, daemon=True).start()
+threading.Thread(target=start_health_server, daemon=True).start()
 import logging
 import random
 import threading
